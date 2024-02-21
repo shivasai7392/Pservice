@@ -4,10 +4,12 @@ import com.ps.pservice.dtos.FakeStoreProductDto;
 import com.ps.pservice.dtos.GenericProductDto;
 import com.ps.pservice.models.Product;
 
+import java.util.List;
+
 public interface IProductService {
     public GenericProductDto getProductById(Long id);
-    public void getAllProducts();
+    public List<GenericProductDto> getAllProducts();
     public void deleteProductById(Long id);
-    public void createProduct(Product product);
+    public GenericProductDto createProduct(GenericProductDto product);
     public void updateProductById(Long id, Product product);
 }
