@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @SpringBootApplication
 public class PServiceApplication implements CommandLineRunner {
@@ -34,22 +35,29 @@ public class PServiceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Category category = new Category();
-        category.setName("Electronics");
-        Category savedCategory = categoryRepository.save(category);
-
-        Price price = new Price();
-        price.setPrice(100);
-        price.setCurrency("USD");
-        Price savedPrice = priceRepository.save(price);
-
-        Product product = new Product();
-        product.setTitle("Laptop");
-        product.setDescription("Dell Laptop");
-        product.setImage("dell.jpg");
-        product.setCategory(savedCategory);
-        product.setPrice(savedPrice);
-        productRepository.save(product);
-
+//        Category category = new Category();
+//        category.setName("Electronics");
+//        Category savedCategory = categoryRepository.save(category);
+//
+//        Price price = new Price();
+//        price.setPrice(100);
+//        price.setCurrency("USD");
+//        Price savedPrice = priceRepository.save(price);
+//
+//        Product product = new Product();
+//        product.setTitle("Laptop");
+//        product.setDescription("Dell Laptop");
+//        product.setImage("dell.jpg");
+//        product.setCategory(savedCategory);
+//        product.setPrice(savedPrice);
+//        productRepository.save(product);
+        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("069a0687-8655-45b6-ae90-3a3a726b05ee"));
+        if (optionalCategory.isPresent()) {
+            Category category = optionalCategory.get();
+            System.out.println(category.getName());
+            for (Product product : category.getProducts()) {
+                System.out.println(product.getTitle());
+            }
+        }
     }
 }
