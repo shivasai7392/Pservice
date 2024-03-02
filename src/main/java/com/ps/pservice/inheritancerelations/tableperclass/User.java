@@ -6,8 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Entity(name = "tpc_users")
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Entity(name = "tpc_users")
 public class User {
     @Id
     private Long id;

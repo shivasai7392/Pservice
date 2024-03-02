@@ -1,15 +1,23 @@
 package com.ps.pservice.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
-@Entity
+@Entity(name = "products")
 public class Product extends BaseModel {
     private String title;
     private String description;
-    private int price;
     private String image;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "price_id")
+    private Price price;
 }

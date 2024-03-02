@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@MappedSuperclass
+//@MappedSuperclass
 public class User {
     @Id
     private Long id;

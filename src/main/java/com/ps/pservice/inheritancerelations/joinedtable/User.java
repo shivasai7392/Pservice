@@ -9,8 +9,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.JOINED)
-@Entity(name = "j_users")
+//@Inheritance(strategy = InheritanceType.JOINED)
+//@Entity(name = "j_users")
 public class User {
     @Id
     private Long id;
