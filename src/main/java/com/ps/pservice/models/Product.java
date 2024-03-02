@@ -13,11 +13,9 @@ public class Product extends BaseModel {
     private String title;
     private String description;
     private String image;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @ManyToOne(optional = false)
     private Category category;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "price_id")
+    @OneToOne(optional = false, orphanRemoval = true)
     private Price price;
 }
