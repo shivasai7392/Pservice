@@ -51,13 +51,15 @@ public class PServiceApplication implements CommandLineRunner {
 //        product.setCategory(savedCategory);
 //        product.setPrice(savedPrice);
 //        productRepository.save(product);
-        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("069a0687-8655-45b6-ae90-3a3a726b05ee"));
-        if (optionalCategory.isPresent()) {
-            Category category = optionalCategory.get();
-            System.out.println(category.getName());
-            for (Product product : category.getProducts()) {
-                System.out.println(product.getTitle());
-            }
-        }
+
+//        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("069a0687-8655-45b6-ae90-3a3a726b05ee"));
+//        if (optionalCategory.isPresent()) {
+//            Category category = optionalCategory.get();
+//            System.out.println(category.getName());
+//            for (Product product : category.getProducts()) {
+//                System.out.println(product.getTitle());
+//            }
+//        }
+        productRepository.deleteById(UUID.fromString("ef038749-7257-45af-8032-d14ae37dd407"));
     }
 }

@@ -14,8 +14,10 @@ public class Product extends BaseModel {
     private String description;
     private String image;
     @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
     private Category category;
 
-    @OneToOne(optional = false, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.REMOVE, optional = false, orphanRemoval = true)
+    @JoinColumn(nullable = false)
     private Price price;
 }
