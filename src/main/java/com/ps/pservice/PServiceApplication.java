@@ -6,10 +6,12 @@ import com.ps.pservice.models.Product;
 import com.ps.pservice.repositories.CategoryRepository;
 import com.ps.pservice.repositories.PriceRepository;
 import com.ps.pservice.repositories.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,6 +36,7 @@ public class PServiceApplication implements CommandLineRunner {
 
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
 //        Category category = new Category();
 //        category.setName("Electronics");
@@ -52,14 +55,15 @@ public class PServiceApplication implements CommandLineRunner {
 //        product.setPrice(savedPrice);
 //        productRepository.save(product);
 
-//        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("069a0687-8655-45b6-ae90-3a3a726b05ee"));
-//        if (optionalCategory.isPresent()) {
-//            Category category = optionalCategory.get();
-//            System.out.println(category.getName());
-//            for (Product product : category.getProducts()) {
-//                System.out.println(product.getTitle());
-//            }
-//        }
-        productRepository.deleteById(UUID.fromString("ef038749-7257-45af-8032-d14ae37dd407"));
+        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("cdf74bcf-0580-4f36-8847-f874c9384cb0"));
+        if (optionalCategory.isPresent()) {
+            Category retrivedCategory = optionalCategory.get();
+            System.out.println(retrivedCategory.getName());
+            List<Product> products = retrivedCategory.getProducts();
+            for (Product p : products) {
+                System.out.println(p.getTitle());
+            }
+        }
+//        productRepository.deleteById(UUID.fromString("ef038749-7257-45af-8032-d14ae37dd407"));
     }
 }
