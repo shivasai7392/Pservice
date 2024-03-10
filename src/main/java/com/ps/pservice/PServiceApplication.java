@@ -16,28 +16,28 @@ import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootApplication
-public class PServiceApplication implements CommandLineRunner {
+public class PServiceApplication {
 
-    private final CategoryRepository categoryRepository;
-    private final PriceRepository priceRepository;
-    private final ProductRepository productRepository;
-
-    public PServiceApplication(CategoryRepository categoryRepository,
-                               PriceRepository priceRepository,
-                               ProductRepository productRepository) {
-        this.categoryRepository = categoryRepository;
-        this.priceRepository = priceRepository;
-        this.productRepository = productRepository;
-    }
+//    private final CategoryRepository categoryRepository;
+//    private final PriceRepository priceRepository;
+//    private final ProductRepository productRepository;
+//
+//    public PServiceApplication(
+//                               PriceRepository priceRepository,
+//                               ProductRepository productRepository) {
+////        this.categoryRepository = categoryRepository;
+//        this.priceRepository = priceRepository;
+//        this.productRepository = productRepository;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(PServiceApplication.class, args);
     }
 
 
-    @Override
-    @Transactional
-    public void run(String... args) throws Exception {
+//    @Override
+//    @Transactional
+//    public void run(String... args) throws Exception {
 //        Category category = new Category();
 //        category.setName("Electronics");
 //        Category savedCategory = categoryRepository.save(category);
@@ -55,15 +55,15 @@ public class PServiceApplication implements CommandLineRunner {
 //        product.setPrice(savedPrice);
 //        productRepository.save(product);
 
-        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("cdf74bcf-0580-4f36-8847-f874c9384cb0"));
-        if (optionalCategory.isPresent()) {
-            Category retrivedCategory = optionalCategory.get();
-            System.out.println(retrivedCategory.getName());
-            List<Product> products = retrivedCategory.getProducts();
-            for (Product p : products) {
-                System.out.println(p.getTitle());
-            }
-        }
+//        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("cdf74bcf-0580-4f36-8847-f874c9384cb0"));
+//        if (optionalCategory.isPresent()) {
+//            Category retrivedCategory = optionalCategory.get();
+//            System.out.println(retrivedCategory.getName());
+//            List<Product> products = retrivedCategory.getProducts();
+//            for (Product p : products) {
+//                System.out.println(p.getTitle());
+//            }
+//        }
 //        productRepository.deleteById(UUID.fromString("ef038749-7257-45af-8032-d14ae37dd407"));
-    }
+//    }
 }
