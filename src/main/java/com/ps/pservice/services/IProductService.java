@@ -8,7 +8,7 @@ import com.ps.pservice.models.Product;
 import java.util.List;
 
 public interface IProductService {
-    public GenericProductDto getProductById(Long id) throws ProductNotFoundException;
+    public GenericProductDto getProductById(String authToken,  Long id) throws ProductNotFoundException;
     public List<GenericProductDto> getAllProducts() throws ProductNotFoundException;
     public GenericProductDto deleteProductById(Long id) throws ProductNotFoundException;
     public GenericProductDto createProduct(GenericProductDto product);

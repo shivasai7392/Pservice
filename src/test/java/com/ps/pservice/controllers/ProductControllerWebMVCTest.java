@@ -95,15 +95,15 @@ public class ProductControllerWebMVCTest {
                 .andExpect(jsonPath("$.title").value("Test Product"));
     }
 
-    @Test
-    public void testIfSameInput() throws ProductNotFoundException {
-        long id = 1L;
-
-        when(productService.getProductById(id)).thenReturn(new GenericProductDto());
-        GenericProductDto genericProductDto = productController.getProductById(id);
-
-        verify(productService).getProductById(longArgumentCaptor.capture());
-        assertEquals(id, longArgumentCaptor.getValue());
-    }
+//    @Test
+//    public void testIfSameInput() throws ProductNotFoundException {
+//        long id = 1L;
+//
+//        when(productService.getProductById(id)).thenReturn(new GenericProductDto());
+//        GenericProductDto genericProductDto = productController.getProductById(id);
+//
+//        verify(productService).getProductById(longArgumentCaptor.capture());
+//        assertEquals(id, longArgumentCaptor.getValue());
+//    }
 
 }

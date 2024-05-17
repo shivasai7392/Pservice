@@ -3,23 +3,36 @@ package com.ps.pservice.services;
 import com.ps.pservice.dtos.FakeStoreProductDto;
 import com.ps.pservice.dtos.GenericProductDto;
 import com.ps.pservice.exceptions.ProductNotFoundException;
+import com.ps.pservice.security.JWTObject;
+import com.ps.pservice.security.TokenValidator;
 import com.ps.pservice.thirdpartyclients.FakeStoreProductsApi;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("fakeStoreProductService")
 public class ProductService implements IProductService {
 
     private final FakeStoreProductsApi fakeStoreProductsApi;
 
-    public ProductService(FakeStoreProductsApi fakeStoreProductsApi) {
+    private final TokenValidator tokenValidator;
+
+    public ProductService(FakeStoreProductsApi fakeStoreProductsApi, TokenValidator tokenValidator) {
         this.fakeStoreProductsApi = fakeStoreProductsApi;
+        this.tokenValidator = tokenValidator;
     }
 
     @Override
-    public GenericProductDto getProductById(Long id) throws ProductNotFoundException {
+    public GenericProductDto getProductById(String authToken, Long id) throws ProductNotFoundException {
+        Optional<JWTObject> jwtObject1 = this.tokenValidator.validateToken(authToken);
+        Optional<JWTObject> jwtObjectOptional = jwtObject1;
+        if (jwtObjectOptional.isEmpty()){
+            return null;
+        }
+        JWTObject jwtObject = jwtObjectOptional.get();
+        System.out.println(jwtObject);
         return getGenericProductDto(fakeStoreProductsApi.getProductById(id));
     }
 

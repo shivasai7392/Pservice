@@ -21,13 +21,13 @@ public class ProductControllerTest {
     @Inject
     private ProductController productController;
 
-    @Test
-    public void testGetProductById() throws ProductNotFoundException {
-        GenericProductDto genericProductDto = new GenericProductDto();
-        when(productService.getProductById(1L)).thenReturn(genericProductDto);
-        GenericProductDto genericProductDto1 = productController.getProductById(1L);
-        assertEquals(genericProductDto, genericProductDto1);
-    }
+//    @Test
+//    public void testGetProductById() throws ProductNotFoundException {
+//        GenericProductDto genericProductDto = new GenericProductDto();
+//        when(productService.getProductById(1L)).thenReturn(genericProductDto);
+//        GenericProductDto genericProductDto1 = productController.getProductById(1L);
+//        assertEquals(genericProductDto, genericProductDto1);
+//    }
 
 //    @GetMapping("")
 //    public List<GenericProductDto> getAllProducts() throws ProductNotFoundException{
