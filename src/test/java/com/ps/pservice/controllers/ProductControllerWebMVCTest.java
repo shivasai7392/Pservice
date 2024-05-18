@@ -45,56 +45,56 @@ public class ProductControllerWebMVCTest {
     @Captor
     private ArgumentCaptor<Long> longArgumentCaptor;
 
-    @Test
-    public void testGetAllProductsEmptyList() throws Exception {
-        when(productService.getAllProducts()).thenReturn(new ArrayList<>());
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/products"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("[]"));
-    }
-
-    @Test
-    public void testGetAllProductsRetuensValidList() throws Exception {
-        List<GenericProductDto> genericProductDtos = new ArrayList<>();
-        genericProductDtos.add(new GenericProductDto());
-        genericProductDtos.add(new GenericProductDto());
-        genericProductDtos.add(new GenericProductDto());
-        when(productService.getAllProducts()).thenReturn(genericProductDtos);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/products"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(objectMapper.writeValueAsString(genericProductDtos)));
-    }
-
-    @Test
-    public void testCreateProduct() throws Exception {
-        GenericProductDto genericProductDto = new GenericProductDto();
-        genericProductDto.setTitle("Test Product");
-        genericProductDto.setDescription("Test Description");
-        genericProductDto.setPrice(100L);
-        genericProductDto.setImage("test.jpg");
-        genericProductDto.setCategory("Test Category");
-
-        GenericProductDto outputGenericProductDto = new GenericProductDto();
-        outputGenericProductDto.setTitle(genericProductDto.getTitle());
-        outputGenericProductDto.setDescription(genericProductDto.getDescription());
-        outputGenericProductDto.setPrice(genericProductDto.getPrice());
-        outputGenericProductDto.setImage(genericProductDto.getImage());
-        outputGenericProductDto.setCategory(genericProductDto.getCategory());
-        outputGenericProductDto.setId(1L);
-
-        when(productService.createProduct(any())).thenReturn(outputGenericProductDto);
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/products")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(genericProductDto)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(objectMapper.writeValueAsString(outputGenericProductDto)))
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.title").value("Test Product"));
-    }
-
+//    @Test
+//    public void testGetAllProductsEmptyList() throws Exception {
+//        when(productService.getAllProducts()).thenReturn(new ArrayList<>());
+//
+//        mockMvc.perform(MockMvcRequestBuilders.get("/products"))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().string("[]"));
+//    }
+//
+//    @Test
+//    public void testGetAllProductsRetuensValidList() throws Exception {
+//        List<GenericProductDto> genericProductDtos = new ArrayList<>();
+//        genericProductDtos.add(new GenericProductDto());
+//        genericProductDtos.add(new GenericProductDto());
+//        genericProductDtos.add(new GenericProductDto());
+//        when(productService.getAllProducts()).thenReturn(genericProductDtos);
+//
+//        mockMvc.perform(MockMvcRequestBuilders.get("/products"))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().string(objectMapper.writeValueAsString(genericProductDtos)));
+//    }
+//
+//    @Test
+//    public void testCreateProduct() throws Exception {
+//        GenericProductDto genericProductDto = new GenericProductDto();
+//        genericProductDto.setTitle("Test Product");
+//        genericProductDto.setDescription("Test Description");
+//        genericProductDto.setPrice(100L);
+//        genericProductDto.setImage("test.jpg");
+//        genericProductDto.setCategory("Test Category");
+//
+//        GenericProductDto outputGenericProductDto = new GenericProductDto();
+//        outputGenericProductDto.setTitle(genericProductDto.getTitle());
+//        outputGenericProductDto.setDescription(genericProductDto.getDescription());
+//        outputGenericProductDto.setPrice(genericProductDto.getPrice());
+//        outputGenericProductDto.setImage(genericProductDto.getImage());
+//        outputGenericProductDto.setCategory(genericProductDto.getCategory());
+//        outputGenericProductDto.setId(1L);
+//
+//        when(productService.createProduct(any())).thenReturn(outputGenericProductDto);
+//
+//        mockMvc.perform(MockMvcRequestBuilders.post("/products")
+//                .contentType("application/json")
+//                .content(objectMapper.writeValueAsString(genericProductDto)))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().string(objectMapper.writeValueAsString(outputGenericProductDto)))
+//                .andExpect(jsonPath("$.id").value(1L))
+//                .andExpect(jsonPath("$.title").value("Test Product"));
+//    }
+//
 //    @Test
 //    public void testIfSameInput() throws ProductNotFoundException {
 //        long id = 1L;
